@@ -10,3 +10,12 @@ docker run --network nth --name nginx -p 8080:80 -d nginx-apache
 # Update the index.html to just hostname
 
 for i in {1..50}; do curl -s http://localhost:8080 ; done
+
+
+# Change the default apache page
+docker exec -it apache1 /bin/bash
+hostname -f > htdocs/index.html
+exit
+docker exec -it apache2 /bin/bash
+hostname -f > htdocs/index.html
+exit
